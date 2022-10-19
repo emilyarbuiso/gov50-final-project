@@ -1,6 +1,6 @@
 ---
 title: "Gov 50 Final Project"
-author: "Your Name Here"
+author: Emily Arbuiso
 description: "My final project"
 output:
   distill::distill_article:
@@ -11,4 +11,4 @@ output:
 
 ## Project thoughts
 
-I am interested in exploring data related to...
+I am interested in exploring data related to immigration to the United States. I am interested in immigration patterns, where people are emigrating from, where they are settling, and other information related to immigration, like age, marital status, etc. I would be interested to see how this information changes over time and how it gets used in American politics. 
