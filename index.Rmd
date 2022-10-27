@@ -11,4 +11,4 @@ output:
 
 ## Project thoughts
 
-I am interested in exploring data related to immigration to the United States. I am interested in immigration patterns, where people are emigrating from, where they are settling, and other information related to immigration, like age, marital status, etc. I would be interested to see how this information changes over time and how it gets used in American politics. 
+I am interested in exploring data related to air quality and air pollution. I am interested in seeing how air pollution varies across major cities in the United States. I am also interested in what factors might determine this variation. I would be interested to see how air pollution varies across cities with different educational backgrounds, ages, economic productivites, etc.
