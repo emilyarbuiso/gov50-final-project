@@ -11,4 +11,4 @@ output:
 
 ## Project thoughts
 
-I am interested in exploring data related to air quality and air pollution. I am interested in seeing how air pollution varies across major cities in the United States. I am also interested in what factors might determine this variation. I would be interested to see how air pollution varies across cities with different educational backgrounds, ages, economic productivites, etc.
+I am interested in exploring data related to air quality and air pollution. I am interested in seeing how air pollution varies across major cities in the United States. I am also interested in what factors might determine this variation. I would be interested to see how air pollution varies across cities with different educational backgrounds, ages, economic productivity, etc.
