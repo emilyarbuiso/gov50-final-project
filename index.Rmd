@@ -33,11 +33,16 @@ unemployment <- read_csv("unemploymentAndIncome.csv")
 
 
 ```
-
+## Visualization #1 - Distribution of PM_2.5
 
 ```{r}
 
-
+airQuality |>
+  ggplot(mapping = aes(x = PM)) +
+  geom_histogram() +
+  labs(x = "PM_2.5 Levels",
+       y = "Frequency",
+       title = "Frequency of PM_2.5 Levels Across NY State (2022)")
 
 ```
 
