@@ -33,7 +33,7 @@ finalData <- finalData |>
   select(County:PopDensity)
 
 ```
-## Visualization #1 - Distribution of PM_2.5
+## Visualization #1: Distribution of PM_2.5
 
 ```{r}
 
@@ -46,12 +46,39 @@ finalData |>
 
 ```
 
+## Visualization #2: PM_2.5 vs. Population Density
+
 ```{r}
 
-## population density 
+## population density prediction
 
+finalData |>
+  ggplot(aes(x = PopDensity,
+             y = PM)) +
+  geom_point(color = "steelblue1") +
+  geom_smooth(method = "lm", se = FALSE, 
+              color = "indianred1", size = 1.5) +
+  labs(x = "Population Density",
+       y = "PM_2.5 Levels",
+       title = "PM_2.5 Levels vs. Population Density in NY Counties")
 
+## population density regression
 
+pop_reg <- lm(PM ~ PopDensity, data = finalData)
+pop_reg
+
+## correlation
+
+cor(finalData$PopDensity, finalData$PM) 
 
 ```
 
+## Results of Population Density Regression
+
+There appears to be a correlation between Population Density and PM_2.5 levels. There is a positive relationship between the two variables, as indicated by the line of best fit on the graph above. Generally, as population density increases, PM_2.5 levels also increase. 
+
+This positive correlation between the two variables is further supported by the linear regression, which indicated an increase in PM_2.5 levels by 4.932e-05 ppm for each 1 unit increase in population density. This number is small, but this was expected as there is a large range in population density. 
+
+Finally, the correlation coefficient between the two variables was calculated to be about 0.520, which indicates a moderate association between the two variables. 
+
+These findings support my predictions, as I predicted that there would be a positive correlation between the two variables. 
