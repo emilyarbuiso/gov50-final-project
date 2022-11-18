@@ -21,23 +21,23 @@ How do different factors like population density, economic activity, poverty, an
 
 ```{r}
 
-## loading data
+## loading data 
 
 library(tidyverse)
 
-education <- read_csv("Education.csv")
-airQuality <- read_csv("airQuality.csv")
-popDensity <- read_csv("popDensity.csv")
-poverty <- read_csv("poverty.csv")
-unemployment <- read_csv("unemploymentAndIncome.csv")
+finalData <- read_csv("finalData.csv")
 
+## getting rid of extra columns 
+
+finalData <- finalData |>
+  select(County:PopDensity)
 
 ```
 ## Visualization #1 - Distribution of PM_2.5
 
 ```{r}
 
-airQuality |>
+finalData |>
   ggplot(mapping = aes(x = PM)) +
   geom_histogram() +
   labs(x = "PM_2.5 Levels",
@@ -46,4 +46,12 @@ airQuality |>
 
 ```
 
+```{r}
+
+## population density 
+
+
+
+
+```
 
