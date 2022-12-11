@@ -125,6 +125,32 @@ Finally, the correlation coefficient between the two variables was calculated to
 
 ```{r}
 
-```
+## Median Income prediction
 
+finalData |>
+  ggplot(aes(x = MedianIncome,
+             y = PM)) +
+  geom_point(color = "steelblue1") +
+  geom_smooth(method = "lm", se = FALSE, 
+              color = "indianred1", size = 1.5) +
+  labs(x = "Median Income",
+       y = "PM_2.5 Levels",
+       title = "PM_2.5 Levels vs. Median Income in NY Counties")
+
+## unemployment regression
+
+income_reg <- lm(PM ~ MedianIncome, data = finalData)
+income_reg
+
+## correlation 
+
+cor(finalData$MedianIncome, finalData$PM)
+
+
+```
+By looking at the graph, we can see that there appears to be a slight correlation between Median Income and PM_2.5 levels. There is a positive relationship between the two variables, as indicated by the line of best fit on the graph above. Generally, as Median Income increases, PM_2.5 levels also increase. 
+
+The regression further supports this observation. The correlation coefficient for this regression is 2.578e-05, which means that as Median Income increases by 1 unit (1 dollar), PM_2.5 levels increase by 2.578e-05 ppm. This number is small, but this was expected as there is a large range in median income, similar to population density.
+
+Finally, the correlation coefficient between the two variables was calculated to be about 0.253, which indicates a weak association between the two variables. 
 
