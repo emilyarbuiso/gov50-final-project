@@ -20,7 +20,7 @@ My final dataset, called finalData, is composed of data taken from the [Office o
 1. Unemployment = The percentage of county that is unemployed.
 2. MedianIncome = The median income for the entire county, in dollars.
 3. CollegeDegree = The proportion of the population that holds a college-level degree or higher. 
-4. PM_2.5 = The level of fine particles with diameters of less than 2.5 micrometers in parts per million. PM_2.5 is a common air pollutant. 
+4. PM_2.5 = The level of fine particles with diameters of less than 2.5 micrometers in parts per million (ppm). PM_2.5 is a common air pollutant. 
 5. Poverty = The percentage of the population that is in poverty. 
 6. PopDensity = The population density of the county, measured in persons per square mile. 
 
@@ -54,20 +54,9 @@ Here, we can see that most of the PM_2.5 levels fall between 6 and 8 parts per m
 
 Next, we will analyze the relationships between PM_2.5 and the other factors discussed above to determine the strengths and potential correlations between air pollution and socioeconomic factors. 
 
-## Visualization #1: Distribution of PM_2.5
+## Results 
 
-```{r}
-
-finalData |>
-  ggplot(mapping = aes(x = PM)) +
-  geom_histogram() +
-  labs(x = "PM_2.5 Levels",
-       y = "Frequency",
-       title = "Frequency of PM_2.5 Levels Across NY State (2022)")
-
-```
-
-## Visualization #2: PM_2.5 vs. Population Density
+### PM_2.5 and Population Density 
 
 ```{r}
 
@@ -92,14 +81,29 @@ pop_reg
 
 cor(finalData$PopDensity, finalData$PM) 
 
+
 ```
+By looking at the graph, we can see that there appears to be a correlation between Population Density and PM_2.5 levels. There is a positive relationship between the two variables, as indicated by the line of best fit on the graph above. Generally, as population density increases, PM_2.5 levels also increase. 
 
-## Results of Population Density Regression
-
-There appears to be a correlation between Population Density and PM_2.5 levels. There is a positive relationship between the two variables, as indicated by the line of best fit on the graph above. Generally, as population density increases, PM_2.5 levels also increase. 
-
-This positive correlation between the two variables is further supported by the linear regression, which indicated an increase in PM_2.5 levels by 4.932e-05 ppm for each 1 unit increase in population density. This number is small, but this was expected as there is a large range in population density. 
+The regression further supports this observation. The correlation coefficient for this regression is 4.932e-05, which means that as population density increases by 1 unit (1 person per square mile), PM_2.5 levels increase by 4.932e-05 ppm. This number is small, but this was expected as there is a large range in population density.
 
 Finally, the correlation coefficient between the two variables was calculated to be about 0.520, which indicates a moderate association between the two variables. 
 
-These findings support my predictions, as I predicted that there would be a positive correlation between the two variables. 
+### PM_2.5 and Unemployment 
+
+```{r}
+
+finalData |>
+  ggplot(aes(x = Unemployment,
+             y = PM)) +
+  geom_point(color = "steelblue1") +
+  geom_smooth(method = "lm", se = FALSE, 
+              color = "indianred1", size = 1.5) +
+  labs(x = "Population Density",
+       y = "PM_2.5 Levels",
+       title = "PM_2.5 Levels vs. Population Density in NY Counties")
+
+```
+
+
+
