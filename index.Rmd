@@ -26,15 +26,7 @@ My final dataset, called finalData, is composed of data taken from the [Office o
 
 This data represents an observational study. This means that no treatment was given, and data was collected through observation. This data represents a cross sectional-research design because it is taking data from one point in time, the year 2021, for a defined population of New York State.
 
-## Project thoughts
-
-I am interested in exploring data related to air pollution. I am interested in seeing how air pollution levels vary across different counties in New York State. Finally, I am interested in what factors might determine this variation. The specific factors I will explore are population density, economic activity, poverty, and education levels.
-
-## Proposal
-
-How do different factors like population density, economic activity, poverty, and education level affect a county's air pollution in the state of New York? Which of these factors impact air pollution the most? I plan to examine how these different factors could impact the levels of certain air pollutants like NO2, 03, and PM2.5. I hypothesize that there will be negative correlations between air pollution and the factor of education level. Typically, with a higher educational background, one has more knowledge of the climate/environmental science and is more aware of the factors that impact air pollution. Additionally, those with higher educational backgrounds tend to vote for more pro-environmental people that will institute policies that will decrease air pollution. I hypothesize that there will be positive correlations between air pollution and the factors of population density, economic activity, and poverty. The explanatory variables of interest are population density, economic activity, poverty, education level. Population density will be measured by people per square mile. Economic activity will be measured by unemployment and median household income. Poverty will be measured by percent of people below the poverty line. Educational background will be measured by the percent of people who have completed college. The outcome variable of interest is air pollution. This will be measured by ppb (parts per billion) or ppm (parts per million) for different pollutants. The years for the data will likely be in the most recent 3 or 4 years. If I observe lower air pollution in counties with higher educational backgrounds, this would support my hypothesis. If I observe higher air pollution in countries with higher educational backgrounds, this would go against my hypothesis. If I observe higher air pollution in counties with higher population densities, more economic activity, and more poverty, this would support my hypothesis. If I observe lower air pollution in counties with lower values of these factors, this would go against my hypothesis. I will also explore which factors correlate the most with air pollution and which do not. 
-
-## Loading data sets 
+### Visualizing Air Pollution Levels 
 
 ```{r}
 
@@ -49,7 +41,19 @@ finalData <- read_csv("finalData.csv")
 finalData <- finalData |>
   select(County:PopDensity)
 
+## distribution of air pollution
+
+finalData |>
+  ggplot(mapping = aes(x = PM)) +
+  geom_histogram() +
+  labs(x = "PM_2.5 Levels",
+       y = "Frequency",
+       title = "Frequency of PM_2.5 Levels Across NY State (2021)")
 ```
+Here, we can see that most of the PM_2.5 levels fall between 6 and 8 parts per million, with a few counties falling outside of this interval. 
+
+Next, we will analyze the relationships between PM_2.5 and the other factors discussed above to determine the strengths and potential correlations between air pollution and socioeconomic factors. 
+
 ## Visualization #1: Distribution of PM_2.5
 
 ```{r}
