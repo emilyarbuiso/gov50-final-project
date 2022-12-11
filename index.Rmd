@@ -154,3 +154,35 @@ The regression further supports this observation. The correlation coefficient fo
 
 Finally, the correlation coefficient between the two variables was calculated to be about 0.253, which indicates a weak association between the two variables. 
 
+### PM_2.5 and Education
+
+```{r}
+
+## Education prediction
+
+finalData |>
+  ggplot(aes(x = CollegeDegree,
+             y = PM)) +
+  geom_point(color = "steelblue1") +
+  geom_smooth(method = "lm", se = FALSE, 
+              color = "indianred1", size = 1.5) +
+  labs(x = "College Degree",
+       y = "PM_2.5 Levels",
+       title = "PM_2.5 Levels vs. Education in NY Counties")
+
+## education regression
+
+income_reg <- lm(PM ~ CollegeDegree, data = finalData)
+income_reg
+
+## correlation 
+
+cor(finalData$CollegeDegree, finalData$PM)
+
+```
+By looking at the graph, we can see that there appears to be a correlation between Education and PM_2.5 levels. There is a positive relationship between the two variables, as indicated by the line of best fit on the graph above. Generally, as Education increases, PM_2.5 levels also increase. 
+
+The regression further supports this observation. The correlation coefficient for this regression is 5.040, which means that as Education increases by 1 unit (1 percentage), PM_2.5 levels increase by 5.040 ppm. 
+
+Finally, the correlation coefficient between the two variables was calculated to be about 0.458, which indicates a moderate association between the two variables. 
+
