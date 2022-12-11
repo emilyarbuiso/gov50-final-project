@@ -1,13 +1,30 @@
 ---
 title: "Gov 50 Final Project"
 author: Emily Arbuiso
-description: "My final project"
+description: "Factors Contributing to New York's Air Pollution"
 output:
   distill::distill_article:
     self_contained: false
 ---
 
+## Introduction
 
+Climate change and its related problems are becoming increasingly important to understand. Air pollution is one of those problems, and poses extreme risks to human health, such as increasing the chances the chances of heart disease or respiratory issues. Air pollution can decrease biodiversity, destroy crops, and generally poses many risks to important biological functions that keep the earth running properly. Besides the obvious release of harmful particles from human activity that cause air pollution, I would like to explore different factors that relate to air pollution. 
+
+How do important socioeconomic factors such as unemployment, median income, post-secondary education, poverty levels, and population density impact air pollution? Which of these factors have the closest relationship to air pollution levels? I will explore these questions in this project by analyzing data from the 62 counties in New York State. 
+
+## Description of Data
+
+My final dataset, called finalData, is composed of data taken from the [Office of the New York State Comptroller Website](https://www.osc.state.ny.us/local-government/data) and the [Environmental Protection Agency Website](https://www.epa.gov/), and displays the following data for each of the 62 counties in New York for the year 2021: 
+
+1. Unemployment = The percentage of county that is unemployed.
+2. MedianIncome = The median income for the entire county, in dollars.
+3. CollegeDegree = The proportion of the population that holds a college-level degree or higher. 
+4. PM_2.5 = The level of fine particles with diameters of less than 2.5 micrometers in parts per million. PM_2.5 is a common air pollutant. 
+5. Poverty = The percentage of the population that is in poverty. 
+6. PopDensity = The population density of the county, measured in persons per square mile. 
+
+This data represents an observational study. This means that no treatment was given, and data was collected through observation. This data represents a cross sectional-research design because it is taking data from one point in time, the year 2021, for a defined population of New York State.
 
 ## Project thoughts
 
