@@ -115,6 +115,16 @@ unemployment_reg
 cor(finalData$Unemployment, finalData$PM)
 
 ```
+By looking at the graph, we can see that there appears to be a correlation between Unemployment and PM_2.5 levels. There is a positive relationship between the two variables, as indicated by the line of best fit on the graph above. Generally, as Unemployment increases, PM_2.5 levels also increase. 
 
+The regression further supports this observation. The correlation coefficient for this regression is 0.2265, which means that as unemployment increases by 1 unit (1 percentage), PM_2.5 levels increase by 0.2265 ppm. 
+
+Finally, the correlation coefficient between the two variables was calculated to be about 0.344, which indicates a weak association between the two variables. 
+
+### PM_2.5 and Median Income
+
+```{r}
+
+```
 
 
