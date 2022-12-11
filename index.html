@@ -1601,19 +1601,40 @@ Coefficients:
 <h3 id="pm_2.5-and-unemployment">PM_2.5 and Unemployment</h3>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>finalData</span> <span class='op'>|&gt;</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Unemployment prediction</span></span>
+<span></span>
+<span><span class='va'>finalData</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Unemployment</span>,</span>
 <span>             y <span class='op'>=</span> <span class='va'>PM</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"steelblue1"</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, se <span class='op'>=</span> <span class='cn'>FALSE</span>, </span>
 <span>              color <span class='op'>=</span> <span class='st'>"indianred1"</span>, size <span class='op'>=</span> <span class='fl'>1.5</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Population Density"</span>,</span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Unemployment"</span>,</span>
 <span>       y <span class='op'>=</span> <span class='st'>"PM_2.5 Levels"</span>,</span>
-<span>       title <span class='op'>=</span> <span class='st'>"PM_2.5 Levels vs. Population Density in NY Counties"</span><span class='op'>)</span></span></code></pre>
+<span>       title <span class='op'>=</span> <span class='st'>"PM_2.5 Levels vs. Unemployment in NY Counties"</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="index_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
+<img src="index_files/figure-html5/unnamed-chunk-3-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## unemployment regression</span></span>
+<span></span>
+<span><span class='va'>unemployment_reg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>PM</span> <span class='op'>~</span> <span class='va'>Unemployment</span>, data <span class='op'>=</span> <span class='va'>finalData</span><span class='op'>)</span></span>
+<span><span class='va'>unemployment_reg</span></span></code></pre>
 </div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<pre><code>
+Call:
+lm(formula = PM ~ Unemployment, data = finalData)
+
+Coefficients:
+ (Intercept)  Unemployment  
+      5.8222        0.2265  </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## correlation </span></span>
+<span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>finalData</span><span class='op'>$</span><span class='va'>Unemployment</span>, <span class='va'>finalData</span><span class='op'>$</span><span class='va'>PM</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 0.3437842</code></pre>
+</div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

@@ -93,15 +93,26 @@ Finally, the correlation coefficient between the two variables was calculated to
 
 ```{r}
 
+## Unemployment prediction
+
 finalData |>
   ggplot(aes(x = Unemployment,
              y = PM)) +
   geom_point(color = "steelblue1") +
   geom_smooth(method = "lm", se = FALSE, 
               color = "indianred1", size = 1.5) +
-  labs(x = "Population Density",
+  labs(x = "Unemployment",
        y = "PM_2.5 Levels",
-       title = "PM_2.5 Levels vs. Population Density in NY Counties")
+       title = "PM_2.5 Levels vs. Unemployment in NY Counties")
+
+## unemployment regression
+
+unemployment_reg <- lm(PM ~ Unemployment, data = finalData)
+unemployment_reg
+
+## correlation 
+
+cor(finalData$Unemployment, finalData$PM)
 
 ```
 
