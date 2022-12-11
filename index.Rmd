@@ -186,3 +186,34 @@ The regression further supports this observation. The correlation coefficient fo
 
 Finally, the correlation coefficient between the two variables was calculated to be about 0.458, which indicates a moderate association between the two variables. 
 
+### PM_2.5 and Poverty
+
+```{r}
+
+## Poverty prediction
+
+finalData |>
+  ggplot(aes(x = Poverty,
+             y = PM)) +
+  geom_point(color = "steelblue1") +
+  geom_smooth(method = "lm", se = FALSE, 
+              color = "indianred1", size = 1.5) +
+  labs(x = "Poverty",
+       y = "PM_2.5 Levels",
+       title = "PM_2.5 Levels vs. Poverty in NY Counties")
+
+## poverty regression
+
+income_reg <- lm(PM ~ Poverty, data = finalData)
+income_reg
+
+## correlation 
+
+cor(finalData$Poverty, finalData$PM)
+
+```
+By looking at the graph, we can see that there appears to be little correlation between Poverty and PM_2.5 levels, as indicated by the almost horizontal line of best fit on the graph above. 
+
+The correlation coefficient for this regression is 0.02879, which means that as Poverty increases by 1 unit (1 percentage), PM_2.5 levels increase by 0.02879 ppm. 
+
+Finally, the correlation coefficient between the two variables was calculated to be about 0.085, which indicates a very weak association between the two variables.
