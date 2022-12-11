@@ -217,3 +217,26 @@ By looking at the graph, we can see that there appears to be little correlation 
 The correlation coefficient for this regression is 0.02879, which means that as Poverty increases by 1 unit (1 percentage), PM_2.5 levels increase by 0.02879 ppm. 
 
 Finally, the correlation coefficient between the two variables was calculated to be about 0.085, which indicates a very weak association between the two variables.
+
+### Multiple Regression
+
+```{r}
+
+## multiple regression
+
+multi_reg <- lm(PM ~ Unemployment + MedianIncome + CollegeDegree + Poverty + PopDensity, data = finalData)
+multi_reg
+
+## creating table
+
+install.packages("modelsummary", repos = "http://cran.us.r-project.org")
+library(modelsummary)
+
+modelsummary::modelsummary(multi_reg,
+                           statistic = c("s.e. = {std.error}",
+                                         "p = {p.value}"),
+                           gof_map = c("nobs", "r.squared", "adj.r.squared"))
+
+
+```
+

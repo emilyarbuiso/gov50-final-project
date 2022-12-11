@@ -1473,6 +1473,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <!--/radix_placeholder_distill-->
   <script src="index_files/header-attrs-2.16/header-attrs.js"></script>
+  <script src="index_files/kePrint-0.0.1/kePrint.js"></script>
+  <link href="index_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
   <script src="index_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="index_files/popper-2.6.0/popper.min.js"></script>
   <link href="index_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -1754,7 +1756,211 @@ Coefficients:
 <p>By looking at the graph, we can see that there appears to be little correlation between Poverty and PM_2.5 levels, as indicated by the almost horizontal line of best fit on the graph above.</p>
 <p>The correlation coefficient for this regression is 0.02879, which means that as Poverty increases by 1 unit (1 percentage), PM_2.5 levels increase by 0.02879 ppm.</p>
 <p>Finally, the correlation coefficient between the two variables was calculated to be about 0.085, which indicates a very weak association between the two variables.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h3 id="multiple-regression">Multiple Regression</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## multiple regression</span></span>
+<span></span>
+<span><span class='va'>multi_reg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>PM</span> <span class='op'>~</span> <span class='va'>Unemployment</span> <span class='op'>+</span> <span class='va'>MedianIncome</span> <span class='op'>+</span> <span class='va'>CollegeDegree</span> <span class='op'>+</span> <span class='va'>Poverty</span> <span class='op'>+</span> <span class='va'>PopDensity</span>, data <span class='op'>=</span> <span class='va'>finalData</span><span class='op'>)</span></span>
+<span><span class='va'>multi_reg</span></span></code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = PM ~ Unemployment + MedianIncome + CollegeDegree + 
+    Poverty + PopDensity, data = finalData)
+
+Coefficients:
+  (Intercept)   Unemployment   MedianIncome  CollegeDegree  
+    5.408e+00      1.188e-01      1.825e-06      3.483e+00  
+      Poverty     PopDensity  
+   -1.988e-02      2.652e-05  </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## creating table</span></span>
+<span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='st'>"modelsummary"</span>, repos <span class='op'>=</span> <span class='st'>"http://cran.us.r-project.org"</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>
+The downloaded binary packages are in
+    /var/folders/2d/6f7wkb7x34qb945g_vvn025m0000gn/T//RtmpEkOQJx/downloaded_packages</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://vincentarelbundock.github.io/modelsummary/'>modelsummary</a></span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>multi_reg</span>,</span>
+<span>                           statistic <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"s.e. = {std.error}"</span>,</span>
+<span>                                         <span class='st'>"p = {p.value}"</span><span class='op'>)</span>,</span>
+<span>                           gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Model 1
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:center;">
+5.408
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.189
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = &lt;0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Unemployment
+</td>
+<td style="text-align:center;">
+0.119
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.115
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.305
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MedianIncome
+</td>
+<td style="text-align:center;">
+0.000002
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.00001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.883
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CollegeDegree
+</td>
+<td style="text-align:center;">
+3.483
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.606
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.034
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Poverty
+</td>
+<td style="text-align:center;">
+−0.020
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.048
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.679
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PopDensity
+</td>
+<td style="text-align:center;">
+0.00003
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.00002
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+p = 0.147
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+62
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+0.351
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+0.294
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
