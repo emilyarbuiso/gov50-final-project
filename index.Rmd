@@ -50,7 +50,7 @@ finalData |>
        title = "Frequency of PM_2.5 Levels Across NY Counties (2021)")
 
 ```
-Here, we can see that most counties have PM_2.5 levels between 6 and 8 ppm. There are some counties that fall outside of this interval, with a maximum of 10.4 ppm and a minimum of 3.4 ppm. 
+Here, we see that most counties have PM_2.5 levels between 6 and 8 ppm. There are some counties that fall outside of this interval, with a maximum of 10.4 ppm and a minimum of 3.4 ppm. 
 
 Next, we will analyze the relationships between PM_2.5 and each of the other factors discussed above to determine the potential correlations and their strengths, between air pollution and the socioeconomic factors. 
 
