@@ -69,7 +69,7 @@ finalData |>
   geom_smooth(method = "lm", se = FALSE, 
               color = "indianred1", size = 1.5) +
   labs(x = "Population Density",
-       y = "PM_2.5 Levels",
+       y = "PM_2.5 Levels (ppm)",
        title = "PM_2.5 Levels vs. Population Density in NY Counties")
 
 ## Population density regression
