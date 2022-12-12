@@ -1536,25 +1536,25 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h3 id="visualizing-air-pollution-levels">Visualizing Air Pollution Levels</h3>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## loading data </span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Loading data </span></span>
 <span></span>
 <span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
 <span></span>
 <span><span class='va'>finalData</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"finalData.csv"</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='co'>## getting rid of extra columns </span></span>
+<span><span class='co'>## Tidying dataset </span></span>
 <span></span>
 <span><span class='va'>finalData</span> <span class='op'>&lt;-</span> <span class='va'>finalData</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>County</span><span class='op'>:</span><span class='va'>PopDensity</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='co'>## distribution of air pollution</span></span>
+<span><span class='co'>## Distribution of air pollution</span></span>
 <span></span>
 <span><span class='va'>finalData</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>PM</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_histogram.html'>geom_histogram</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"PM_2.5 Levels"</span>,</span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"PM_2.5 Levels (ppm)"</span>,</span>
 <span>       y <span class='op'>=</span> <span class='st'>"Frequency"</span>,</span>
-<span>       title <span class='op'>=</span> <span class='st'>"Frequency of PM_2.5 Levels Across NY State (2021)"</span><span class='op'>)</span></span></code></pre>
+<span>       title <span class='op'>=</span> <span class='st'>"Frequency of PM_2.5 Levels Across NY Counties (2021)"</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-1-1.png" width="624" /></p>
 </div>
@@ -1564,7 +1564,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h3 id="pm_2.5-and-population-density">PM_2.5 and Population Density</h3>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## population density prediction</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Population density graph</span></span>
 <span></span>
 <span><span class='va'>finalData</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>PopDensity</span>,</span>
@@ -1578,7 +1578,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <img src="index_files/figure-html5/unnamed-chunk-2-1.png" width="624" />
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## population density regression</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Population density regression</span></span>
 <span></span>
 <span><span class='va'>pop_reg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>PM</span> <span class='op'>~</span> <span class='va'>PopDensity</span>, data <span class='op'>=</span> <span class='va'>finalData</span><span class='op'>)</span></span>
 <span><span class='va'>pop_reg</span></span></code></pre>
@@ -1591,19 +1591,17 @@ Coefficients:
 (Intercept)   PopDensity  
   6.843e+00    4.932e-05  </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## correlation</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Population density correlation</span></span>
 <span></span>
 <span><span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>finalData</span><span class='op'>$</span><span class='va'>PopDensity</span>, <span class='va'>finalData</span><span class='op'>$</span><span class='va'>PM</span><span class='op'>)</span> </span></code></pre>
 </div>
 <pre><code>[1] 0.5197903</code></pre>
 </div>
-<p>By looking at the graph, we can see that there appears to be a correlation between Population Density and PM_2.5 levels. There is a positive relationship between the two variables, as indicated by the line of best fit on the graph above. Generally, as population density increases, PM_2.5 levels also increase.</p>
-<p>The regression further supports this observation. The correlation coefficient for this regression is 4.932e-05, which means that as population density increases by 1 unit (1 person per square mile), PM_2.5 levels increase by 4.932e-05 ppm. This number is small, but this was expected as there is a large range in population density.</p>
-<p>Finally, the correlation coefficient between the two variables was calculated to be about 0.520, which indicates a moderate association between the two variables.</p>
+<p>The graph indicates a positive correlation between Population Density and PM_2.5 levels. This can be seen through the line of best fit, represented by the red line. Generally, as population density increases, PM_2.5 levels also increase. The regression results further support this observation. The coefficient for this regression is 4.932e-05 (or 0.00004932). This means that as population density increases by 1 unit (1 person per square mile), PM_2.5 levels increase by 4.932e-05 ppm. This number is small, but because there is such a large range in population density, such a number is expected. Finally, the correlation coefficient (a measure of the strength of a relationship between two variables) between the two variables was 0.520, which indicates a moderately strong association between the two variables.</p>
 <h3 id="pm_2.5-and-unemployment">PM_2.5 and Unemployment</h3>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Unemployment prediction</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Unemployment graph</span></span>
 <span></span>
 <span><span class='va'>finalData</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Unemployment</span>,</span>
@@ -1611,13 +1609,13 @@ Coefficients:
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"steelblue1"</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, se <span class='op'>=</span> <span class='cn'>FALSE</span>, </span>
 <span>              color <span class='op'>=</span> <span class='st'>"indianred1"</span>, size <span class='op'>=</span> <span class='fl'>1.5</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Unemployment"</span>,</span>
-<span>       y <span class='op'>=</span> <span class='st'>"PM_2.5 Levels"</span>,</span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Unemployment (% of county)"</span>,</span>
+<span>       y <span class='op'>=</span> <span class='st'>"PM_2.5 Levels (ppm)"</span>,</span>
 <span>       title <span class='op'>=</span> <span class='st'>"PM_2.5 Levels vs. Unemployment in NY Counties"</span><span class='op'>)</span></span></code></pre>
 </div>
 <img src="index_files/figure-html5/unnamed-chunk-3-1.png" width="624" />
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## unemployment regression</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Unemployment regression</span></span>
 <span></span>
 <span><span class='va'>unemployment_reg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>PM</span> <span class='op'>~</span> <span class='va'>Unemployment</span>, data <span class='op'>=</span> <span class='va'>finalData</span><span class='op'>)</span></span>
 <span><span class='va'>unemployment_reg</span></span></code></pre>
@@ -1630,19 +1628,17 @@ Coefficients:
  (Intercept)  Unemployment  
       5.8222        0.2265  </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## correlation </span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Unemployment correlation </span></span>
 <span></span>
 <span><span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>finalData</span><span class='op'>$</span><span class='va'>Unemployment</span>, <span class='va'>finalData</span><span class='op'>$</span><span class='va'>PM</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>[1] 0.3437842</code></pre>
 </div>
-<p>By looking at the graph, we can see that there appears to be a correlation between Unemployment and PM_2.5 levels. There is a positive relationship between the two variables, as indicated by the line of best fit on the graph above. Generally, as Unemployment increases, PM_2.5 levels also increase.</p>
-<p>The regression further supports this observation. The correlation coefficient for this regression is 0.2265, which means that as unemployment increases by 1 unit (1 percentage), PM_2.5 levels increase by 0.2265 ppm.</p>
-<p>Finally, the correlation coefficient between the two variables was calculated to be about 0.344, which indicates a weak association between the two variables.</p>
+<p>From the graph, there seems to be a positive correlation between Unemployment and PM_2.5 levels. This can be seen through the line of best fit. Generally, as unemployment levels increase, PM_2.5 levels also increase. The regression further supports this observation. The coefficient for this regression is 0.2265, which means that as unemployment increases by 1 unit (1 percent), PM_2.5 levels increase by 0.2265 ppm. However, the correlation coefficient between the two variables is about 0.344, which indicates a weak association between the two variables. This reflects a weak strength to the relationship between Unemployment and PM_2.5.</p>
 <h3 id="pm_2.5-and-median-income">PM_2.5 and Median Income</h3>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Median Income prediction</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Median Income graph</span></span>
 <span></span>
 <span><span class='va'>finalData</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>MedianIncome</span>,</span>
@@ -1650,13 +1646,13 @@ Coefficients:
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"steelblue1"</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, se <span class='op'>=</span> <span class='cn'>FALSE</span>, </span>
 <span>              color <span class='op'>=</span> <span class='st'>"indianred1"</span>, size <span class='op'>=</span> <span class='fl'>1.5</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Median Income"</span>,</span>
-<span>       y <span class='op'>=</span> <span class='st'>"PM_2.5 Levels"</span>,</span>
-<span>       title <span class='op'>=</span> <span class='st'>"PM_2.5 Levels vs. Median Income in NY Counties"</span><span class='op'>)</span></span></code></pre>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Median Household Income (dollars)"</span>,</span>
+<span>       y <span class='op'>=</span> <span class='st'>"PM_2.5 Levels (ppm)"</span>,</span>
+<span>       title <span class='op'>=</span> <span class='st'>"PM_2.5 Levels vs. Median Household Income in NY Counties"</span><span class='op'>)</span></span></code></pre>
 </div>
 <img src="index_files/figure-html5/unnamed-chunk-4-1.png" width="624" />
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## unemployment regression</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Median Income regression</span></span>
 <span></span>
 <span><span class='va'>income_reg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>PM</span> <span class='op'>~</span> <span class='va'>MedianIncome</span>, data <span class='op'>=</span> <span class='va'>finalData</span><span class='op'>)</span></span>
 <span><span class='va'>income_reg</span></span></code></pre>
@@ -1669,19 +1665,17 @@ Coefficients:
  (Intercept)  MedianIncome  
    5.423e+00     2.578e-05  </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## correlation </span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Median Income correlation </span></span>
 <span></span>
 <span><span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>finalData</span><span class='op'>$</span><span class='va'>MedianIncome</span>, <span class='va'>finalData</span><span class='op'>$</span><span class='va'>PM</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>[1] 0.2532647</code></pre>
 </div>
-<p>By looking at the graph, we can see that there appears to be a slight correlation between Median Income and PM_2.5 levels. There is a positive relationship between the two variables, as indicated by the line of best fit on the graph above. Generally, as Median Income increases, PM_2.5 levels also increase.</p>
-<p>The regression further supports this observation. The correlation coefficient for this regression is 2.578e-05, which means that as Median Income increases by 1 unit (1 dollar), PM_2.5 levels increase by 2.578e-05 ppm. This number is small, but this was expected as there is a large range in median income, similar to population density.</p>
-<p>Finally, the correlation coefficient between the two variables was calculated to be about 0.253, which indicates a weak association between the two variables.</p>
+<p>From the line of best fit, there seems to be a positive relationship between Median Household Income and PM_2.5 levels. Generally, as Median Household Income increases, PM_2.5 levels tend to increase. Though, the strength relationship does not appear to as strong as the relationships for Population Density and Unemployment. The coefficient for the regression is 2.578e-05 or (0.00002578), which means that as Median Household Income increases by 1 unit (1 dollar), PM_2.5 levels increase by 2.578e-05 ppm. This number is small, but this was expected due to the large range in values for Median Household Income, in a similar way to Population Density. Finally, the correlation coefficient between Median Household Income and PM_2.5 levels was about 0.253, which indicates a weak strength of relationship, supporting the earlier conclusion.</p>
 <h3 id="pm_2.5-and-education">PM_2.5 and Education</h3>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Education prediction</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Education graph</span></span>
 <span></span>
 <span><span class='va'>finalData</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>CollegeDegree</span>,</span>
@@ -1689,13 +1683,13 @@ Coefficients:
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"steelblue1"</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, se <span class='op'>=</span> <span class='cn'>FALSE</span>, </span>
 <span>              color <span class='op'>=</span> <span class='st'>"indianred1"</span>, size <span class='op'>=</span> <span class='fl'>1.5</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"College Degree"</span>,</span>
-<span>       y <span class='op'>=</span> <span class='st'>"PM_2.5 Levels"</span>,</span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Proportion of County with College Degree or Higher"</span>,</span>
+<span>       y <span class='op'>=</span> <span class='st'>"PM_2.5 Levels (ppm)"</span>,</span>
 <span>       title <span class='op'>=</span> <span class='st'>"PM_2.5 Levels vs. Education in NY Counties"</span><span class='op'>)</span></span></code></pre>
 </div>
 <img src="index_files/figure-html5/unnamed-chunk-5-1.png" width="624" />
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## education regression</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Education regression</span></span>
 <span></span>
 <span><span class='va'>income_reg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>PM</span> <span class='op'>~</span> <span class='va'>CollegeDegree</span>, data <span class='op'>=</span> <span class='va'>finalData</span><span class='op'>)</span></span>
 <span><span class='va'>income_reg</span></span></code></pre>
@@ -1708,19 +1702,17 @@ Coefficients:
   (Intercept)  CollegeDegree  
         5.526          5.040  </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## correlation </span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Education correlation </span></span>
 <span></span>
 <span><span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>finalData</span><span class='op'>$</span><span class='va'>CollegeDegree</span>, <span class='va'>finalData</span><span class='op'>$</span><span class='va'>PM</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>[1] 0.4575398</code></pre>
 </div>
-<p>By looking at the graph, we can see that there appears to be a correlation between Education and PM_2.5 levels. There is a positive relationship between the two variables, as indicated by the line of best fit on the graph above. Generally, as Education increases, PM_2.5 levels also increase.</p>
-<p>The regression further supports this observation. The correlation coefficient for this regression is 5.040, which means that as Education increases by 1 unit (1 percentage), PM_2.5 levels increase by 5.040 ppm.</p>
-<p>Finally, the correlation coefficient between the two variables was calculated to be about 0.458, which indicates a moderate association between the two variables.</p>
+<p>From the line of best fit, there appears to be a positive relationship between Education levels and PM_2.5 levels. That is, as the proportion of a county with a college degree or higher increases, PM_2.5 levels tend to increase. The regression supports this observation, as the regression coefficient is 5.040. This means that as Education increases by 1 unit (1 additional percentage of the county with a college degree or higher), PM_2.5 levels increase by 5.040 ppm. Finally, the correlation coefficient between the two variables is about 0.458 which indicated a moderately strong relationship between them.</p>
 <h3 id="pm_2.5-and-poverty">PM_2.5 and Poverty</h3>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Poverty prediction</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Poverty graph</span></span>
 <span></span>
 <span><span class='va'>finalData</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Poverty</span>,</span>
@@ -1728,8 +1720,8 @@ Coefficients:
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"steelblue1"</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, se <span class='op'>=</span> <span class='cn'>FALSE</span>, </span>
 <span>              color <span class='op'>=</span> <span class='st'>"indianred1"</span>, size <span class='op'>=</span> <span class='fl'>1.5</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Poverty"</span>,</span>
-<span>       y <span class='op'>=</span> <span class='st'>"PM_2.5 Levels"</span>,</span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Poverty (% of county below poverty line)"</span>,</span>
+<span>       y <span class='op'>=</span> <span class='st'>"PM_2.5 Levels (ppm)"</span>,</span>
 <span>       title <span class='op'>=</span> <span class='st'>"PM_2.5 Levels vs. Poverty in NY Counties"</span><span class='op'>)</span></span></code></pre>
 </div>
 <img src="index_files/figure-html5/unnamed-chunk-6-1.png" width="624" />
@@ -1753,13 +1745,11 @@ Coefficients:
 </div>
 <pre><code>[1] 0.08537905</code></pre>
 </div>
-<p>By looking at the graph, we can see that there appears to be little correlation between Poverty and PM_2.5 levels, as indicated by the almost horizontal line of best fit on the graph above.</p>
-<p>The correlation coefficient for this regression is 0.02879, which means that as Poverty increases by 1 unit (1 percentage), PM_2.5 levels increase by 0.02879 ppm.</p>
-<p>Finally, the correlation coefficient between the two variables was calculated to be about 0.085, which indicates a very weak association between the two variables.</p>
+<p>From the nearly horizontal line of best fit, there appears to be little correlation between Poverty and PM_2.5 levels, especially in comparison to the other variables. That is, an increase in poverty levels is not really associated with any change in PM_2.5 levels. However, there does appear to be a very minor positive relationship. The regression coefficient supports this observation, as it is 0.028. This means that as Poverty increases by 1 unit (1 additional percentage of the county below the poverty line), PM_2.5 levels increase by 0.028 ppm. Finally, the correlation coefficient between the two variables is about 0.085, which indicates a very weak association between them. This is the smallest correlation coefficient out of all of the relationships analyzed so far.</p>
 <h3 id="multiple-regression">Multiple Regression</h3>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## multiple regression</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Multiple regression</span></span>
 <span></span>
 <span><span class='va'>multi_reg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>PM</span> <span class='op'>~</span> <span class='va'>Unemployment</span> <span class='op'>+</span> <span class='va'>MedianIncome</span> <span class='op'>+</span> <span class='va'>CollegeDegree</span> <span class='op'>+</span> <span class='va'>Poverty</span> <span class='op'>+</span> <span class='va'>PopDensity</span>, data <span class='op'>=</span> <span class='va'>finalData</span><span class='op'>)</span></span>
 <span><span class='va'>multi_reg</span></span></code></pre>
@@ -1775,13 +1765,13 @@ Coefficients:
       Poverty     PopDensity  
    -1.988e-02      2.652e-05  </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## creating table</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Creating table</span></span>
 <span></span>
 <span><span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='st'>"modelsummary"</span>, repos <span class='op'>=</span> <span class='st'>"http://cran.us.r-project.org"</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>
 The downloaded binary packages are in
-    /var/folders/2d/6f7wkb7x34qb945g_vvn025m0000gn/T//RtmpNnPJqf/downloaded_packages</code></pre>
+    /var/folders/2d/6f7wkb7x34qb945g_vvn025m0000gn/T//Rtmph1Cvxl/downloaded_packages</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://vincentarelbundock.github.io/modelsummary/'>modelsummary</a></span><span class='op'>)</span></span>
 <span></span>

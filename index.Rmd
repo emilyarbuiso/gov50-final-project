@@ -29,25 +29,26 @@ This data represents an observational study. This means that no treatment was gi
 
 ```{r}
 
-## loading data 
+## Loading data 
 
 library(tidyverse)
 
 finalData <- read_csv("finalData.csv")
 
-## getting rid of extra columns 
+## Tidying dataset 
 
 finalData <- finalData |>
   select(County:PopDensity)
 
-## distribution of air pollution
+## Distribution of air pollution
 
 finalData |>
   ggplot(mapping = aes(x = PM)) +
   geom_histogram() +
-  labs(x = "PM_2.5 Levels",
+  labs(x = "PM_2.5 Levels (ppm)",
        y = "Frequency",
-       title = "Frequency of PM_2.5 Levels Across NY State (2021)")
+       title = "Frequency of PM_2.5 Levels Across NY Counties (2021)")
+
 ```
 Here, we can see that most counties have PM_2.5 levels between 6 and 8 ppm. There are some counties that fall outside of this interval, with a maximum of 10.4 ppm and a minimum of 3.4 ppm. 
 
@@ -59,7 +60,7 @@ Next, we will analyze the relationships between PM_2.5 and each of the other fac
 
 ```{r}
 
-## population density prediction
+## Population density graph
 
 finalData |>
   ggplot(aes(x = PopDensity,
@@ -71,28 +72,23 @@ finalData |>
        y = "PM_2.5 Levels",
        title = "PM_2.5 Levels vs. Population Density in NY Counties")
 
-## population density regression
+## Population density regression
 
 pop_reg <- lm(PM ~ PopDensity, data = finalData)
 pop_reg
 
-## correlation
+## Population density correlation
 
 cor(finalData$PopDensity, finalData$PM) 
 
-
 ```
-By looking at the graph, we can see that there appears to be a correlation between Population Density and PM_2.5 levels. There is a positive relationship between the two variables, as indicated by the line of best fit on the graph above. Generally, as population density increases, PM_2.5 levels also increase. 
-
-The regression further supports this observation. The correlation coefficient for this regression is 4.932e-05, which means that as population density increases by 1 unit (1 person per square mile), PM_2.5 levels increase by 4.932e-05 ppm. This number is small, but this was expected as there is a large range in population density.
-
-Finally, the correlation coefficient between the two variables was calculated to be about 0.520, which indicates a moderate association between the two variables. 
+The graph indicates a positive correlation between Population Density and PM_2.5 levels. This can be seen through the line of best fit, represented by the red line. Generally, as population density increases, PM_2.5 levels also increase. The regression results further support this observation. The coefficient for this regression is 4.932e-05 (or 0.00004932). This means that as population density increases by 1 unit (1 person per square mile), PM_2.5 levels increase by 4.932e-05 ppm. This number is small, but because there is such a large range in population density, such a number is expected. Finally, the correlation coefficient (a measure of the strength of a relationship between two variables) between the two variables was 0.520, which indicates a moderately strong association between the two variables. 
 
 ### PM_2.5 and Unemployment 
 
 ```{r}
 
-## Unemployment prediction
+## Unemployment graph
 
 finalData |>
   ggplot(aes(x = Unemployment,
@@ -100,31 +96,27 @@ finalData |>
   geom_point(color = "steelblue1") +
   geom_smooth(method = "lm", se = FALSE, 
               color = "indianred1", size = 1.5) +
-  labs(x = "Unemployment",
-       y = "PM_2.5 Levels",
+  labs(x = "Unemployment (% of county)",
+       y = "PM_2.5 Levels (ppm)",
        title = "PM_2.5 Levels vs. Unemployment in NY Counties")
 
-## unemployment regression
+## Unemployment regression
 
 unemployment_reg <- lm(PM ~ Unemployment, data = finalData)
 unemployment_reg
 
-## correlation 
+## Unemployment correlation 
 
 cor(finalData$Unemployment, finalData$PM)
 
 ```
-By looking at the graph, we can see that there appears to be a correlation between Unemployment and PM_2.5 levels. There is a positive relationship between the two variables, as indicated by the line of best fit on the graph above. Generally, as Unemployment increases, PM_2.5 levels also increase. 
-
-The regression further supports this observation. The correlation coefficient for this regression is 0.2265, which means that as unemployment increases by 1 unit (1 percentage), PM_2.5 levels increase by 0.2265 ppm. 
-
-Finally, the correlation coefficient between the two variables was calculated to be about 0.344, which indicates a weak association between the two variables. 
+From the graph, there seems to be a positive correlation between Unemployment and PM_2.5 levels. This can be seen through the line of best fit. Generally, as unemployment levels increase, PM_2.5 levels also increase. The regression further supports this observation. The coefficient for this regression is 0.2265, which means that as unemployment increases by 1 unit (1 percent), PM_2.5 levels increase by 0.2265 ppm. However, the correlation coefficient between the two variables is about 0.344, which indicates a weak association between the two variables. This reflects a weak strength to the relationship between Unemployment and PM_2.5. 
 
 ### PM_2.5 and Median Income
 
 ```{r}
 
-## Median Income prediction
+## Median Income graph
 
 finalData |>
   ggplot(aes(x = MedianIncome,
@@ -132,32 +124,27 @@ finalData |>
   geom_point(color = "steelblue1") +
   geom_smooth(method = "lm", se = FALSE, 
               color = "indianred1", size = 1.5) +
-  labs(x = "Median Income",
-       y = "PM_2.5 Levels",
-       title = "PM_2.5 Levels vs. Median Income in NY Counties")
+  labs(x = "Median Household Income (dollars)",
+       y = "PM_2.5 Levels (ppm)",
+       title = "PM_2.5 Levels vs. Median Household Income in NY Counties")
 
-## unemployment regression
+## Median Income regression
 
 income_reg <- lm(PM ~ MedianIncome, data = finalData)
 income_reg
 
-## correlation 
+## Median Income correlation 
 
 cor(finalData$MedianIncome, finalData$PM)
 
-
 ```
-By looking at the graph, we can see that there appears to be a slight correlation between Median Income and PM_2.5 levels. There is a positive relationship between the two variables, as indicated by the line of best fit on the graph above. Generally, as Median Income increases, PM_2.5 levels also increase. 
-
-The regression further supports this observation. The correlation coefficient for this regression is 2.578e-05, which means that as Median Income increases by 1 unit (1 dollar), PM_2.5 levels increase by 2.578e-05 ppm. This number is small, but this was expected as there is a large range in median income, similar to population density.
-
-Finally, the correlation coefficient between the two variables was calculated to be about 0.253, which indicates a weak association between the two variables. 
+From the line of best fit, there seems to be a positive relationship between Median Household Income and PM_2.5 levels. Generally, as Median Household Income increases, PM_2.5 levels tend to increase. Though, the strength relationship does not appear to as strong as the relationships for Population Density and  Unemployment. The coefficient for the regression is 2.578e-05 or (0.00002578), which means that as Median Household Income increases by 1 unit (1 dollar), PM_2.5 levels increase by 2.578e-05 ppm. This number is small, but this was expected due to the large range in values for Median Household Income, in a similar way to Population Density. Finally, the correlation coefficient between Median Household Income and PM_2.5 levels was about 0.253, which indicates a weak strength of relationship, supporting the earlier conclusion. 
 
 ### PM_2.5 and Education
 
 ```{r}
 
-## Education prediction
+## Education graph
 
 finalData |>
   ggplot(aes(x = CollegeDegree,
@@ -165,31 +152,28 @@ finalData |>
   geom_point(color = "steelblue1") +
   geom_smooth(method = "lm", se = FALSE, 
               color = "indianred1", size = 1.5) +
-  labs(x = "College Degree",
-       y = "PM_2.5 Levels",
+  labs(x = "Proportion of County with College Degree or Higher",
+       y = "PM_2.5 Levels (ppm)",
        title = "PM_2.5 Levels vs. Education in NY Counties")
 
-## education regression
+## Education regression
 
 income_reg <- lm(PM ~ CollegeDegree, data = finalData)
 income_reg
 
-## correlation 
+## Education correlation 
 
 cor(finalData$CollegeDegree, finalData$PM)
 
 ```
-By looking at the graph, we can see that there appears to be a correlation between Education and PM_2.5 levels. There is a positive relationship between the two variables, as indicated by the line of best fit on the graph above. Generally, as Education increases, PM_2.5 levels also increase. 
+From the line of best fit, there appears to be a positive relationship between Education levels and PM_2.5 levels. That is, as the proportion of a county with a college degree or higher increases, PM_2.5 levels tend to increase. The regression supports this observation, as the regression coefficient is 5.040. This means that as Education increases by 1 unit (1 additional percentage of the county with a college degree or higher), PM_2.5 levels increase by 5.040 ppm. Finally, the correlation coefficient between the two variables is about 0.458 which indicated a moderately strong relationship between them. 
 
-The regression further supports this observation. The correlation coefficient for this regression is 5.040, which means that as Education increases by 1 unit (1 percentage), PM_2.5 levels increase by 5.040 ppm. 
-
-Finally, the correlation coefficient between the two variables was calculated to be about 0.458, which indicates a moderate association between the two variables. 
 
 ### PM_2.5 and Poverty
 
 ```{r}
 
-## Poverty prediction
+## Poverty graph
 
 finalData |>
   ggplot(aes(x = Poverty,
@@ -197,8 +181,8 @@ finalData |>
   geom_point(color = "steelblue1") +
   geom_smooth(method = "lm", se = FALSE, 
               color = "indianred1", size = 1.5) +
-  labs(x = "Poverty",
-       y = "PM_2.5 Levels",
+  labs(x = "Poverty (% of county below poverty line)",
+       y = "PM_2.5 Levels (ppm)",
        title = "PM_2.5 Levels vs. Poverty in NY Counties")
 
 ## poverty regression
@@ -211,22 +195,18 @@ income_reg
 cor(finalData$Poverty, finalData$PM)
 
 ```
-By looking at the graph, we can see that there appears to be little correlation between Poverty and PM_2.5 levels, as indicated by the almost horizontal line of best fit on the graph above. 
-
-The correlation coefficient for this regression is 0.02879, which means that as Poverty increases by 1 unit (1 percentage), PM_2.5 levels increase by 0.02879 ppm. 
-
-Finally, the correlation coefficient between the two variables was calculated to be about 0.085, which indicates a very weak association between the two variables.
+From the nearly horizontal line of best fit, there appears to be little correlation between Poverty and PM_2.5 levels, especially in comparison to the other variables. That is, an increase in poverty levels is not really associated with any change in PM_2.5 levels. However, there does appear to be a very minor positive relationship. The regression coefficient supports this observation, as it is 0.028. This means that as Poverty increases by 1 unit (1 additional percentage of the county below the poverty line), PM_2.5 levels increase by 0.028 ppm. Finally, the correlation coefficient between the two variables is about 0.085, which indicates a very weak association between them. This is the smallest correlation coefficient out of all of the relationships analyzed so far.
 
 ### Multiple Regression
 
 ```{r}
 
-## multiple regression
+## Multiple regression
 
 multi_reg <- lm(PM ~ Unemployment + MedianIncome + CollegeDegree + Poverty + PopDensity, data = finalData)
 multi_reg
 
-## creating table
+## Creating table
 
 install.packages("modelsummary", repos = "http://cran.us.r-project.org")
 library(modelsummary)
@@ -235,7 +215,6 @@ modelsummary::modelsummary(multi_reg,
                            statistic = c("s.e. = {std.error}",
                                          "p = {p.value}"),
                            gof_map = c("nobs", "r.squared", "adj.r.squared"))
-
 
 ```
 
