@@ -9,22 +9,21 @@ output:
 
 ## Introduction
 
-Climate change and its related problems are becoming increasingly important to understand. Air pollution is one of those problems, and poses extreme risks to human health, such as increasing the chances the chances of heart disease or respiratory issues. Air pollution can decrease biodiversity, destroy crops, and generally poses many risks to important biological functions that keep the earth running properly. Besides the obvious release of harmful particles from human activity that cause air pollution, I would like to explore different factors that relate to air pollution. 
-
-How do important socioeconomic factors such as unemployment, median income, post-secondary education, poverty levels, and population density impact air pollution? Which of these factors have the closest relationship to air pollution levels? I will explore these questions in this project by analyzing data from the 62 counties in New York State. 
+Environmental issues are increasingly becoming important topics in politics, business, education, and everyday life. One such environmental issue is air pollution, which poses extreme risks to human health, biodiversity, entire ecosystems, and the normal functions of the planet. Their causes are important to understand, as human activities and systems are a major contributor to worsening climate conditions and changes. Which leads to the central research question of this project: Do different socioeconomic factors like unemployment rates, median household income, education levels, poverty, and population density impact levels of air pollution? Which of these factors, if any, impacts air pollution the most? To analyze these relationships, I will be examining data from the 62 counties of New York State. 
 
 ## Description of Data
 
-My final dataset, called finalData, is composed of data taken from the [Office of the New York State Comptroller Website](https://www.osc.state.ny.us/local-government/data) and the [Environmental Protection Agency Website](https://www.epa.gov/), and displays the following data for each of the 62 counties in New York for the year 2021: 
+My final dataset, called finalData, is composed of data taken from the [Office of the New York State Comptroller Website](https://www.osc.state.ny.us/local-government/data) and the [Environmental Protection Agency's Website](https://www.epa.gov/), and displays the following variables for the year 2021.
 
-1. Unemployment = The percentage of county that is unemployed.
-2. MedianIncome = The median income for the entire county, in dollars.
-3. CollegeDegree = The proportion of the population that holds a college-level degree or higher. 
-4. PM_2.5 = The level of fine particles with diameters of less than 2.5 micrometers in parts per million (ppm). PM_2.5 is a common air pollutant. 
-5. Poverty = The percentage of the population that is in poverty. 
-6. PopDensity = The population density of the county, measured in persons per square mile. 
+1. County = Full county name. 
+2. Unemployment = Percentage of county that is unemployed.
+3. MedianIncome = The median household income for the entire county, in dollars.
+4. CollegeDegree = The proportion of the population that holds a college-level degree or higher. 
+5. PM_2.5 = The level of fine particles with diameters of less than 2.5 micrometers in parts per million (ppm). PM_2.5 is a common air pollutant. 
+6. Poverty = The percentage of the population of the county that is in poverty. 
+7. PopDensity = The population density of the county, measured in persons per square mile. 
 
-This data represents an observational study. This means that no treatment was given, and data was collected through observation. This data represents a cross sectional-research design because it is taking data from one point in time, the year 2021, for a defined population of New York State.
+This data represents an observational study. This means that no treatment was given to any place or person, and thus data was collected through observation only. This is a cross sectional-research design, because it is taking data from one point in time, the year 2021, for a defined population of New York State. There are 62 counties total, and the dataset is not missing any values.
 
 ### Visualizing Air Pollution Levels 
 
@@ -50,9 +49,9 @@ finalData |>
        y = "Frequency",
        title = "Frequency of PM_2.5 Levels Across NY State (2021)")
 ```
-Here, we can see that most of the PM_2.5 levels fall between 6 and 8 parts per million, with a few counties falling outside of this interval. 
+Here, we can see that most counties have PM_2.5 levels between 6 and 8 ppm. There are some counties that fall outside of this interval, with a maximum of 10.4 ppm and a minimum of 3.4 ppm. 
 
-Next, we will analyze the relationships between PM_2.5 and the other factors discussed above to determine the strengths and potential correlations between air pollution and socioeconomic factors. 
+Next, we will analyze the relationships between PM_2.5 and each of the other factors discussed above to determine the potential correlations and their strengths, between air pollution and the socioeconomic factors. 
 
 ## Results 
 
