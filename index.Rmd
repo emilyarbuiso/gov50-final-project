@@ -9,21 +9,21 @@ output:
 
 ## Introduction
 
-Environmental issues are increasingly becoming important topics in politics, business, education, and everyday life. One such environmental issue is air pollution, which poses extreme risks to human health, biodiversity, entire ecosystems, and the normal functions of the planet. Their causes are important to understand, as human activities and systems are a major contributor to worsening climate conditions and changes. Which leads to the central research question of this project: Do different socioeconomic factors like unemployment rates, median household income, education levels, poverty, and population density impact levels of air pollution? Which of these factors, if any, impacts air pollution the most? To analyze these relationships, I will be examining data from the 62 counties of New York State. I hypothesize that there will be correlations between these variables and air pollution levels. 
+Environmental issues are becoming increasingly important topics in politics, business, education, and everyday life. One such environmental issue is air pollution, which poses extreme risks to human health, biodiversity, entire ecosystems, and the normal functions of the planet. Its causes are important to understand, as human activities and systems are a major contributor to worsening climate conditions and changes. This leads to the central research question of this project: Do different socioeconomic factors like unemployment rates, median household income, education levels, poverty, and population density impact levels of air pollution? Which of these factors, if any, impacts air pollution the most? To analyze these relationships, I will be examining data from the 62 counties of New York State. PM_2.5 is the air pollutant that will be used in this study. I hypothesize that there will be positive correlations between median household income, educational levels, and population density and PM_2.5 levels. I also hypothesize that there will be negative correlations between unemployment rates, poverty and PM_2.5 levels. 
 
 ## Description of Data
 
 My final dataset, called finalData, is composed of data taken from the [Office of the New York State Comptroller Website](https://www.osc.state.ny.us/local-government/data) and the [Environmental Protection Agency's Website](https://www.epa.gov/), and displays the following variables for the year 2021.
 
-1. County = Full county name. 
-2. Unemployment = Percentage of county that is unemployed.
-3. MedianIncome = The median household income for the entire county, in dollars.
-4. CollegeDegree = The proportion of the population that holds a college-level degree or higher. 
-5. PM_2.5 = The level of fine particles with diameters of less than 2.5 micrometers in parts per million (ppm). PM_2.5 is a common air pollutant. 
-6. Poverty = The percentage of the population of the county that is in poverty. 
-7. PopDensity = The population density of the county, measured in persons per square mile. 
+1. County = Full county name 
+2. Unemployment = Percentage of county that is unemployed
+3. MedianIncome = The median household income for the entire county, in dollars
+4. CollegeDegree = The proportion of the population that holds a college-level degree  
+5. PM_2.5 = The level of fine particles with diameters of less than 2.5 micrometers, measured in parts per million (ppm) 
+6. Poverty = The percentage of the population of the county that is below the poverty line 
+7. PopDensity = The population density of the county, measured in persons per square mile
 
-This data represents an observational study. This means that no treatment was given to any place or person, and thus data was collected through observation only. This is a cross sectional-research design, because it is taking data from one point in time, the year 2021, for a defined population of New York State. There are 62 counties total, and the dataset is not missing any values.
+This data represents an observational study. This means that no treatment was given to any place or person. Thus, data was collected through observation only. This is a cross sectional-research design, because it is taking data from one point in time, the year 2021, for a defined population of New York State. There are 62 counties total, and the dataset is not missing any values.
 
 ### Visualizing Air Pollution Levels 
 
@@ -74,7 +74,7 @@ finalData |>
 
 ## Population density regression
 
-pop_reg <- lm(PM ~ PopDensity, data = finalData)
+pop_reg <- lm(PM ~ PopDensity, data = finalData) 
 pop_reg
 
 ## Population density correlation
@@ -82,7 +82,7 @@ pop_reg
 cor(finalData$PopDensity, finalData$PM) 
 
 ```
-The graph indicates a positive correlation between Population Density and PM_2.5 levels. This can be seen through the line of best fit, represented by the red line. Generally, as population density increases, PM_2.5 levels also increase. The regression results further support this observation. The coefficient for this regression is 4.932e-05 (or 0.00004932). This means that as population density increases by 1 unit (1 person per square mile), PM_2.5 levels increase by 4.932e-05 ppm. This number is small, but because there is such a large range in population density, such a number is expected. Finally, the correlation coefficient (a measure of the strength of a relationship between two variables) between the two variables was 0.520, which indicates a moderately strong association between the two variables. 
+The graph indicates a positive correlation between Population Density and PM_2.5 levels. This can be seen through the line of best fit, represented by the red line. Generally, as population density increases, PM_2.5 levels also increase. The regression results further support this observation. The coefficient for this regression is 4.932e-05 (or about 0.00005). This means that as population density increases by 1 unit (1 person per square mile), PM_2.5 levels increase by 0.00005 ppm. This number is small, but because there is such a large range in population density, such a number is expected. Finally, the correlation coefficient (a measure of the strength of a relationship between two variables) between the two variables was about 0.520, which indicates a moderately strong association between the two variables. 
 
 ### PM_2.5 and Unemployment 
 
@@ -110,9 +110,9 @@ unemployment_reg
 cor(finalData$Unemployment, finalData$PM)
 
 ```
-From the graph, there seems to be a positive correlation between Unemployment and PM_2.5 levels. This can be seen through the line of best fit. Generally, as unemployment levels increase, PM_2.5 levels also increase. The regression further supports this observation. The coefficient for this regression is about 0.227, which means that as unemployment increases by 1 unit (1 percent), PM_2.5 levels increase by 0.227 ppm. However, the correlation coefficient between the two variables is about 0.344, which indicates a weak association between the two variables. This reflects a weak strength to the relationship between Unemployment and PM_2.5. 
+From the graph, there seems to be a positive correlation between Unemployment and PM_2.5 levels. This can be seen through the line of best fit. Generally, as unemployment levels increase, PM_2.5 levels also increase. The regression further supports this observation. The coefficient for this regression is about 0.227, which means that as unemployment increases by 1 unit (1 percent level), PM_2.5 levels increase by 0.227 ppm. However, the correlation coefficient between the two variables is about 0.344, which indicates a weak association between the two variables. This reflects a weak strength to the relationship between Unemployment and PM_2.5. 
 
-### PM_2.5 and Median Income
+### PM_2.5 and Median Household Income
 
 ```{r}
 
@@ -138,7 +138,7 @@ income_reg
 cor(finalData$MedianIncome, finalData$PM)
 
 ```
-From the line of best fit, there seems to be a positive relationship between Median Household Income and PM_2.5 levels. Generally, as Median Household Income increases, PM_2.5 levels tend to increase. Though, the strength relationship does not appear to as strong as the relationships for Population Density and  Unemployment. The coefficient for the regression is 2.578e-05 or (0.00002578), which means that as Median Household Income increases by 1 unit (1 dollar), PM_2.5 levels increase by 2.578e-05 ppm. This number is small, but this was expected due to the large range in values for Median Household Income, in a similar way to Population Density. Finally, the correlation coefficient between Median Household Income and PM_2.5 levels was about 0.253, which indicates a weak strength of relationship, supporting the earlier conclusion. 
+From the line of best fit, there seems to be a positive relationship between Median Household Income and PM_2.5 levels. Generally, as Median Household Income increases, PM_2.5 levels tend to increase. Though, the relationship's strength does not appear to as strong as the relationships for Population Density and  Unemployment. The coefficient for the regression is 2.578e-05 (or about 0.00003), which means that as Median Household Income increases by 1 unit (1 dollar), PM_2.5 levels increase by 0.00003 ppm. This number is small, but this was expected due to the large range in values for Median Household Income, in a similar way to Population Density. Finally, the correlation coefficient between Median Household Income and PM_2.5 levels was about 0.253, which indicates a weak strength of relationship, supporting the earlier conclusion. 
 
 ### PM_2.5 and Education
 
@@ -152,13 +152,13 @@ finalData |>
   geom_point(color = "steelblue1") +
   geom_smooth(method = "lm", se = FALSE, 
               color = "indianred1", size = 1.5) +
-  labs(x = "Proportion of County with College Degree or Higher",
+  labs(x = "Proportion of County with College Degree",
        y = "PM_2.5 Levels (ppm)",
        title = "PM_2.5 Levels vs. Education in NY Counties")
 
 ## Education regression
 
-income_reg <- lm(PM ~ CollegeDegree, data = finalData)
+income_reg <- lm(PM ~ CollegeDegree, data = finalData) 
 income_reg
 
 ## Education correlation 
@@ -166,7 +166,7 @@ income_reg
 cor(finalData$CollegeDegree, finalData$PM)
 
 ```
-From the line of best fit, there appears to be a positive relationship between Education levels and PM_2.5 levels. That is, as the proportion of a county with a college degree or higher increases, PM_2.5 levels tend to increase. The regression supports this observation, as the regression coefficient is 5.040. This means that as Education increases by 1 unit (1 additional percentage of the county with a college degree or higher), PM_2.5 levels increase by 5.040 ppm. Finally, the correlation coefficient between the two variables is about 0.458 which indicated a moderately strong relationship between them. 
+From the line of best fit, there appears to be a positive relationship between Education levels and PM_2.5 levels. That is, as the proportion of a county with a college degree increases, PM_2.5 levels tend to increase. The regression supports this observation, as the regression coefficient is 5.040. This means that as Education increases by 1 unit (1 additional percentage level of the county with a college degree), PM_2.5 levels increase by 5.040 ppm. Finally, the correlation coefficient between the two variables is about 0.458, which indicates a moderately strong relationship between them. 
 
 
 ### PM_2.5 and Poverty
@@ -195,7 +195,7 @@ income_reg
 cor(finalData$Poverty, finalData$PM)
 
 ```
-From the nearly horizontal line of best fit, there appears to be little correlation between Poverty and PM_2.5 levels, especially in comparison to the other variables. That is, an increase in poverty levels is not really associated with any change in PM_2.5 levels. However, there does appear to be a very minor positive relationship. The regression coefficient supports this observation, as it is 0.028. This means that as Poverty increases by 1 unit (1 additional percentage of the county below the poverty line), PM_2.5 levels increase by 0.028 ppm. Finally, the correlation coefficient between the two variables is about 0.085, which indicates a very weak association between them. This is the smallest correlation coefficient out of all of the relationships analyzed so far.
+From the nearly horizontal line of best fit, there appears to be little correlation between Poverty and PM_2.5 levels, especially in comparison to the other variables. That is, an increase in poverty levels is not really associated with any change in PM_2.5 levels. However, there does appear to be a very minor positive relationship. The regression coefficient supports this observation, as it is about 0.029. This means that as Poverty increases by 1 unit (1 additional percentage level of the county below the poverty line), PM_2.5 levels increase by 0.029 ppm. Finally, the correlation coefficient between the two variables is about 0.085, which indicates a very weak association between them. This is the smallest correlation coefficient out of all of the relationships analyzed so far.
 
 ### Multiple Regression
 
@@ -219,23 +219,23 @@ modelsummary::modelsummary(multi_reg,
 ```
 The multiple regression here analyzes the strength of the relationship between PM_2.5 levels and each variable, taking into account the effects of the other variables on one particular variable. Our previous regressions examined the relationship between one variable and PM_2.5 levels without taking into account how other variables might impact the strength of the relationship. 
 
-The coefficient for the unemployment variable in the multiple regression was 0.119. This means that a one-percentage increase in the county's unemployed population corresponds with an increase of 0.119 ppm of PM_2.5 levels. The singular regression from earlier had a coefficient of 0.227. While still a positive relationship, with the other variables taken into account, the multiple regression shows a decreased impact of unemployment on PM_2.5 levels. 
+The coefficient for the unemployment variable in the multiple regression was 0.119. This means that a one-percentage level increase in the county's unemployed population corresponds with an increase of 0.119 ppm of PM_2.5 levels. The singular regression from earlier had a coefficient of 0.227. While still a positive relationship, with the other variables taken into account, the multiple regression shows a decreased impact of unemployment on PM_2.5 levels. 
 
 The coefficient for the Median Household Income variable is about 0.000002. This means that a one-dollar increase in the median household income corresponds with an increase of 0.000002 ppm of PM_2.5 levels. The singular regression from earlier had a coefficient of about 0.00003. Similar to unemployment, the multiple regression shows a decreased impact of median household income on PM_2.5 levels. The relationship is still positive, though. 
 
-The coefficient for the CollegeDegree variable is about 3.483. This means that a one-percentage increase in the percentage of a county with a college-degree or higher corresponds with an increase of about 3.483 ppm of PM_2.5 levels. The singular regression from earlier had a coefficient of about 5.040. Similar to unemployment and median household income, the multiple regression shows a decreased impact of CollegeDegree on PM_2.5 levels. The relationship is still positive.
+The coefficient for the CollegeDegree variable is about 3.483. This means that a one-percentage level increase in the percentage of a county with a college-degree corresponds with an increase of about 3.483 ppm of PM_2.5 levels. The singular regression from earlier had a coefficient of about 5.040. Similar to unemployment and median household income, the multiple regression shows a decreased impact of CollegeDegree on PM_2.5 levels. The relationship is still positive.
 
-The coefficient for the poverty variable is about -0.020. This means that a one-percentage increase in the percentage of a county below the poverty line is associated with a decrease of about 0.020 ppm of PM_2.5 levels. The regression from earlier had a coefficient of about 0.028. This is a change in both degree of impact but also direction of relationship. The singular regression had a positive relationship, but the multiple regression shows a negative relationship.
+The coefficient for the poverty variable is about -0.020. This means that a one-percentage level increase in the percentage of a county below the poverty line is associated with a decrease of about 0.020 ppm of PM_2.5 levels. The regression from earlier had a coefficient of about 0.029. This is a change in both degree of impact but also direction of relationship. The singular regression had a positive relationship, but the multiple regression shows a negative relationship.
 
-The coefficient for the Population Density variable is about 0.0003. This means that a one-unit increase in population density is associated with an increase of about 0.00004 ppm of PM_2.5 levels. The regression from earlier had a coefficient of about 0.00005. Similar to the other variables, the multiple regression shows a decreased, but still positive impact of population density on PM_2.5 levels. 
+The coefficient for the Population Density variable is about 0.0003. This means that a one-unit increase in population density is associated with an increase of about 0.00003 ppm of PM_2.5 levels. The regression from earlier had a coefficient of about 0.00005. Similar to the other variables, the multiple regression shows a decreased, but still positive impact of population density on PM_2.5 levels. 
 
-The p-values calculated by the multiple regression represent the probability of obtaining the coefficient, assuming the null hypothesis (that there is no correlation between the variables). In other words, the larger the p-value, the greater the chance of observing no correlation between the variables. And thus, a lower p-value represents greater statistical significance. That is, a greater chance of the coefficients representing the existence of a relationship. The p values for each variable are as follows: unemployment (0.305), MedianIncome (0.883), CollegeDegree (0.034), poverty (0.679), and PopDensity (0.147). From these p-values, we can see that the the order of most to least statistical significance is CollegeDegree, PopDensity, unemployment, poverty, and MedianIncome. 
+The p-values calculated by the multiple regression represent the probability of obtaining the coefficient, assuming the null hypothesis (that there is no correlation between the variables). The larger the p-value, the greater the chance of observing no correlation between the variables. Thus, a lower p-value represents greater statistical significance, indicative of a greater chance of the coefficients representing the existence of a relationship. The p-values for each variable are as follows: unemployment (0.305), MedianIncome (0.883), CollegeDegree (0.034), poverty (0.679), and PopDensity (0.147). From these p-values, we can see that the the order of most to least statistical significance is CollegeDegree, PopDensity, unemployment, poverty, and MedianIncome. 
 
-I would greatly caution against interpreting any of the coefficients as representing a causal effect. There are many other variables to account for that are not in this data set. For example, nearby factories, differences in geographical regions, or variation between seasons. These factors are all potential confounders, meaning that they could impact the data that we currently have. However, the factors analyzed are all important factors to analyze their correlations with air pollution levels. 
+I would greatly caution against interpreting any of the coefficients as representing a causal effect. There are many other variables to account for that are not in this data set. For example, nearby factories, differences in geographical regions, or variation between seasons, among others. These factors are all potential confounders, meaning that they could impact the data that we currently have. However, the factors' correlations with air pollution levels analyzed in this study are all important factors to analyze.
 
 ## Conclusion
 
-The results of the analyses suggest the following: a positive impact of unemployment, median household income, education, and population density on PM_2.5 levels. They suggest a negative impact of poverty on PM_2.5 levels. These observations support my hypothesis. The most statistically significant results are CollegeDegree and Population Density, while the least statistically significant results are poverty and MedianIncome. Unemployment is in the middle. There are a number of potential limitations to this study. For example, a smaller sample size of counties was used than available - a future study could incorporate counties from all over the country. A future dataset could also include other air pollutants to either corroborate or contradict observed results, or additional years. Another limitation of the study is the amount of factors included, and that some excluded factors could be potential confounders - a future study could incorporate different factors like proximity to factories, local legislation that could impact pollution levels, etc. An observational study had to be used and thus cannot control for confounders as well as an experimental study. However, an experimental study testing air pollution levels would be extremely unethical, so future studies should attempt to account for as many confounders as possible. Overall, the analyses of this project support the conclusions that these factors are correlated with air pollution in some way. However, it is extremely risky to assume causality.  
+The results of the analyses suggest the following: a positive impact of unemployment, median household income, education, and population density on PM_2.5 levels. They suggest a negative impact of poverty on PM_2.5 levels. These observations support my hypotheses for median household income, education, population density, and poverty. However, they disprove my hypothesis for unemployment. The most statistically significant results are CollegeDegree and Population Density, while the least statistically significant results are poverty and MedianIncome. Unemployment is in the middle. There are a number of potential limitations to this study. For example, a smaller sample size of counties was used than available - a future study could incorporate counties from all over the country. A future dataset could also include other air pollutants to either corroborate or contradict observed results. It could also include additional years. Another limitation of the study is the amount of factors included, and that some excluded factors could be potential confounders. A future study could incorporate different factors like proximity to factories, local legislation that could impact pollution levels, etc. An observational study had to be used and thus cannot control for confounders as well as an experimental study. However, an experimental study testing air pollution levels would be extremely unethical, so future observational studies should attempt to account for as many confounders as possible. Overall, the analyses of this project support the conclusions that these factors are correlated with air pollution in some way. However, it is extremely risky to assume causality.  
 
 
 
