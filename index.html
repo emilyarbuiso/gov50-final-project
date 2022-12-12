@@ -1634,7 +1634,7 @@ Coefficients:
 </div>
 <pre><code>[1] 0.3437842</code></pre>
 </div>
-<p>From the graph, there seems to be a positive correlation between Unemployment and PM_2.5 levels. This can be seen through the line of best fit. Generally, as unemployment levels increase, PM_2.5 levels also increase. The regression further supports this observation. The coefficient for this regression is 0.2265, which means that as unemployment increases by 1 unit (1 percent), PM_2.5 levels increase by 0.2265 ppm. However, the correlation coefficient between the two variables is about 0.344, which indicates a weak association between the two variables. This reflects a weak strength to the relationship between Unemployment and PM_2.5.</p>
+<p>From the graph, there seems to be a positive correlation between Unemployment and PM_2.5 levels. This can be seen through the line of best fit. Generally, as unemployment levels increase, PM_2.5 levels also increase. The regression further supports this observation. The coefficient for this regression is about 0.227, which means that as unemployment increases by 1 unit (1 percent), PM_2.5 levels increase by 0.227 ppm. However, the correlation coefficient between the two variables is about 0.344, which indicates a weak association between the two variables. This reflects a weak strength to the relationship between Unemployment and PM_2.5.</p>
 <h3 id="pm_2.5-and-median-income">PM_2.5 and Median Income</h3>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1771,7 +1771,7 @@ Coefficients:
 </div>
 <pre><code>
 The downloaded binary packages are in
-    /var/folders/2d/6f7wkb7x34qb945g_vvn025m0000gn/T//Rtmph1Cvxl/downloaded_packages</code></pre>
+    /var/folders/2d/6f7wkb7x34qb945g_vvn025m0000gn/T//Rtmp0wejmX/downloaded_packages</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://vincentarelbundock.github.io/modelsummary/'>modelsummary</a></span><span class='op'>)</span></span>
 <span></span>
@@ -1950,6 +1950,16 @@ R2 Adj.
 </tbody>
 </table>
 </div>
+<p>The multiple regression here analyzes the strength of the relationship between PM_2.5 levels and each variable, taking into account the effects of the other variables on one particular variable. Our previous regressions examined the relationship between one variable and PM_2.5 levels without taking into account how other variables might impact the strength of the relationship.</p>
+<p>The coefficient for the unemployment variable in the multiple regression was 0.119. This means that a one-percentage increase in the county’s unemployed population corresponds with an increase of 0.119 ppm of PM_2.5 levels. The singular regression from earlier had a coefficient of 0.227. While still a positive relationship, with the other variables taken into account, the multiple regression shows a decreased impact of unemployment on PM_2.5 levels.</p>
+<p>The coefficient for the Median Household Income variable is about 0.000002. This means that a one-dollar increase in the median household income corresponds with an increase of 0.000002 ppm of PM_2.5 levels. The singular regression from earlier had a coefficient of about 0.00003. Similar to unemployment, the multiple regression shows a decreased impact of median household income on PM_2.5 levels. The relationship is still positive, though.</p>
+<p>The coefficient for the CollegeDegree variable is about 3.483. This means that a one-percentage increase in the percentage of a county with a college-degree or higher corresponds with an increase of about 3.483 ppm of PM_2.5 levels. The singular regression from earlier had a coefficient of about 5.040. Similar to unemployment and median household income, the multiple regression shows a decreased impact of CollegeDegree on PM_2.5 levels. The relationship is still positive.</p>
+<p>The coefficient for the poverty variable is about -0.020. This means that a one-percentage increase in the percentage of a county below the poverty line is associated with a decrease of about 0.020 ppm of PM_2.5 levels. The regression from earlier had a coefficient of about 0.028. This is a change in both degree of impact but also direction of relationship. The singular regression had a positive relationship, but the multiple regression shows a negative relationship.</p>
+<p>The coefficient for the Population Density variable is about 0.0003. This means that a one-unit increase in population density is associated with an increase of about 0.00004 ppm of PM_2.5 levels. The regression from earlier had a coefficient of about 0.00005. Similar to the other variables, the multiple regression shows a decreased, but still positive impact of population density on PM_2.5 levels.</p>
+<p>The p-values calculated by the multiple regression represent the probability that we will get this relationship or an even more drastic relationship. In other words, a higher p-value represents a higher probability of a more extreme relationship, which is essentially a greater chance of a potentially higher impact of a variable on air pollution. A higher p-value would indicate more statistical significance in this case. The p values for each variable are as follows: unemployment (0.305), MedianIncome (0.883), CollegeDegree (0.034), poverty (0.679), and PopDensity (0.147). **</p>
+<p>I would greatly caution against interpreting any of the coefficients as representing a causal effect. There are many other variables to account for that are not in this data set. For example, nearby factories, differences in geographical regions, or variation between seasons. These factors are all potential confounders, meaning that they could impact the data that we currently have. However, the factors analyzed are all important factors to analyze their correlations with air pollution levels.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The results of the analyses suggest the following: a positive impact of unemployment, median household income, education, and population density on PM_2.5 levels. They suggest a negative impact of poverty on PM_2.5 levels.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
